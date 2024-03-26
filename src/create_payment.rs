@@ -1,20 +1,20 @@
+use serde::Serialize;
 use uuid::Uuid;
 
 use crate::config::CONFIG;
 
-struct Customer {
-    name: String,
-    email: String,
-    address_line1: String,
-    address_line2: String,
-    city: String,
-    state: String,
-    postal_code: String,
-    country: String,
-    phone: String,
+#[derive(Debug, Serialize)]
+pub struct Customer {
+    pub(crate) cus_name: String,
+    pub(crate) cus_email: String,
+    pub(crate) cus_add1: String,
+    pub(crate) cus_city: String,
+    pub(crate) cus_postcode: String,
+    pub(crate) cus_country: String,
+    pub(crate) cus_phone: String,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Serialize)]
 pub struct Transaction {
     store_id: String,
     store_passwd: String,
@@ -22,10 +22,12 @@ pub struct Transaction {
     fail_url: String,
     cancel_url: String,
     ipn_url: Option<String>,
+    pub tran_id: String,
     pub(crate) total_amount: f64,
     pub(crate) currency: String,
-    pub tran_id: String,
     pub(crate) product_category: String,
+    #[serde(flatten)]
+    pub(crate) customer: Customer,
 }
 
 impl Default for Transaction {
@@ -41,6 +43,15 @@ impl Default for Transaction {
             currency: "BDT".to_string(),
             tran_id: Uuid::new_v4().to_string(),
             product_category: String::new(),
+            customer: Customer {
+                cus_name: String::new(),
+                cus_email: String::new(),
+                cus_add1: String::new(),
+                cus_city: String::new(),
+                cus_postcode: String::new(),
+                cus_country: String::new(),
+                cus_phone: String::new(),
+            },
         }
     }
 }
