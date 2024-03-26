@@ -1,0 +1,4 @@
+[payment_credentials]
+base_url = "base_url"
+store_id = "store_id"
+store_passwd = "store_passwd"
