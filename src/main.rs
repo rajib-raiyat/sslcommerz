@@ -10,7 +10,7 @@ fn main() {
     transaction.total_amount = 100.00;
     transaction.customer.cus_name = "Adam".to_string();
 
-    // println!("Transaction: {:?}", transaction);
     let json_data = to_string_pretty(&transaction).unwrap();
+    // println!("Transaction: {:?}", transaction);
     println!("Transaction Request JSON:\n{}", json_data);
 }
