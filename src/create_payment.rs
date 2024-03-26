@@ -1,4 +1,4 @@
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
 use crate::config::CONFIG;
@@ -14,8 +14,8 @@ pub struct Customer {
     pub(crate) cus_phone: String,
 }
 
-#[derive(Debug, Serialize)]
-struct CartItem {
+#[derive(Debug, Serialize, Deserialize)]
+pub struct CartItem {
     sku: String,
     product: String,
     quantity: u8,
@@ -23,11 +23,11 @@ struct CartItem {
 }
 
 #[derive(Debug, Serialize)]
-struct ProductInformation {
-    product_name: String,
+pub struct ProductInformation {
+    pub(crate) product_name: String,
     product_category: String,
     product_profile: String,
-    cart: Vec<CartItem>,
+    pub(crate) cart: Vec<CartItem>,
 }
 
 #[derive(Debug, Serialize)]
