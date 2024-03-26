@@ -18,14 +18,15 @@ pub struct PaymentCredentials {
     pub success_url: String,
     pub fail_url: String,
     pub cancel_url: String,
-    pub ipn_url: Option<String>
+    pub ipn_url: Option<String>,
 }
 
 pub fn load_config() -> Result<Config, toml::de::Error> {
     let mut file = File::open("config.toml").expect("Unable to open `config.toml` file");
     let mut contents = String::new();
-    
-    file.read_to_string(&mut contents).expect("Unable to read `config.toml` file");
+
+    file.read_to_string(&mut contents)
+        .expect("Unable to read `config.toml` file");
 
     toml::from_str(&contents)
 }
