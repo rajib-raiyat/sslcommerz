@@ -1,7 +1,8 @@
 use std::fs::File;
 use std::io::Read;
-use serde::Deserialize;
+
 use lazy_static::lazy_static;
+use serde::Deserialize;
 use toml;
 
 #[derive(Debug, Deserialize)]
@@ -14,6 +15,10 @@ pub struct PaymentCredentials {
     pub base_url: String,
     pub store_id: String,
     pub store_passwd: String,
+    pub success_url: String,
+    pub fail_url: String,
+    pub cancel_url: String,
+    pub ipn_url: Option<String>
 }
 
 pub fn load_config() -> Result<Config, toml::de::Error> {

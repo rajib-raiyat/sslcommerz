@@ -2,3 +2,7 @@
 base_url = "base_url"
 store_id = "store_id"
 store_passwd = "store_passwd"
+success_url = "success_url"
+fail_url = "fail_url"
+cancel_url = "cancel_url"
+ipn_url = "ipn_url"

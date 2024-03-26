@@ -1,11 +1,11 @@
-mod config;
+use crate::create_payment::Transaction;
 
-use config::CONFIG;
+mod config;
+mod create_payment;
 
 fn main() {
-    let base_url = &CONFIG.payment_credentials.base_url;
-    let store_id = &CONFIG.payment_credentials.store_id;
+    let mut transaction = Transaction::default();
+    transaction.total_amount = 100.00;
 
-    println!("Base URL: {}", base_url);
-    println!("Store ID: {}", store_id);
+    println!("Transaction: {:?}", transaction);
 }
